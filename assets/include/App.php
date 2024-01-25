@@ -114,6 +114,41 @@ class App{
             echo "aucune adresse mail correspondante";
         }
     }
+
+
+
+    public function se_connecter_etudiant($requete, $tableau_donnee,$destination){
+        $tab=["matricule"=>$tableau_donnee['matricule']];
+        $connection_user=  $this->lien_connexion->prepare($requete);
+        $connection_user->execute($tab);
+        $resultat= $connection_user->fetch(PDO::FETCH_ASSOC);
+        if($connection_user->rowCount()>0)
+        {
+            if(password_verify($tableau_donnee['password'],$resultat['password']))
+            {
+                //début des sessions
+                session_start();
+                $_SESSION['name_etudiant']= $resultat['name'];
+                $_SESSION['matricule_etudiant']= $resultat['matricule'];
+                $_SESSION['surname_etudiant']= $resultat['surname'];
+
+                $_SESSION['date_naiss_etudiant']= $resultat['date_naiss'];
+                $_SESSION['sexe_etudiant']= $resultat['sexe'];
+                
+                $_SESSION['religion_etudiant']= $resultat['religion'];
+                $_SESSION['email_etudiant']= $resultat['email'];
+
+                 $_SESSION['id_niveau_etudiant']= $resultat['id_niveau'];
+                $_SESSION['password_etudiant']= $resultat['password'];
+                $_SESSION['image_etudiant']= $resultat['image'];
+                header("location: ".$destination."");
+            }else {
+                echo "mauvais mot de passe";
+            }
+        }else{
+            echo "aucune adresse mail correspondante";
+        }
+    }
     public function debut_session()
     {
         session_start();

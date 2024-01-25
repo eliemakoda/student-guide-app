@@ -133,15 +133,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         <li class="menu-title">
                             <span>Menu Principal</span>
                         </li>
-                        <li class="submenu active">
-                            <a href="#"><i class="feather-grid"></i> <span> Dashboard</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="index.php" class="active">Administration </a></li>
-                                <li><a href="./Listematière.php">Matieres </a></li>
-                                <li><a href="./ListeExamen.php">Examens</a></li>
-                            </ul>
-                        </li>
+                       
                         <li class="submenu active">
                             <a href="#"><i class="feather-grid"></i> <span> Niveau</span> <span
                                     class="menu-arrow"></span></a>

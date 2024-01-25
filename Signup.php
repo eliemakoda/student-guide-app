@@ -110,7 +110,7 @@ $apps->inserer($sql,$tab,$destination);
                 <input type="file"  name="images[]" multiple>
               </div>
               <div class="dont-have">
-                Déjà un compte? <a href="login.php">Se connecter</a>
+                Déjà un compte? <a href="index.php">Se connecter</a>
               </div>
               <div class="form-group mb-0">
                 <button class="btn btn-primary btn-block" type="submit" name="submit">
