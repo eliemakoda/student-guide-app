@@ -189,7 +189,15 @@ if (session_status() == PHP_SESSION_NONE) {
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="./ListeQuestions.php" class="active">Liste des questions </a></li>
-                                <li><a href="./ajoutChapitre.php">Ajouter Des Question   </a></li>
+                                <li><a href="./ajoutQuestions.php">Ajouter Des Question   </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu active">
+                            <a href="#"><i class="feather-layout"></i> <span> Etudiant </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="./ListeEtudiants.php" class="active">Liste des Etudiants </a></li>
+                                <li><a href="./AjoutEtudiant.php">Ajouter Des Etudiants   </a></li>
                             </ul>
                         </li>
                     </ul>

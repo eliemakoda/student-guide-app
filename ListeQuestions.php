@@ -1,56 +1,35 @@
 <?php
 session_start();
 require './assets/include/App.php';
-$sql="select * FROM niveau WHERE 1;";
+$sql="select * FROM qcm WHERE 1;";
 $apps= new App;
+
 $resultat= $apps->SelectionnerTout($sql);
 if(isset($_POST["rechercher"]))
 {
     $nom=$_POST["nomrech"];
-    $sql="SELECT * FROM niveau where nom like '%$nom%' ";
+    $sql="SELECT * FROM qcm where question like '%$nom%' ";
     $resultat=$apps->SelectionnerTout($sql);
 }
 require "./header.php";
 ?>
-<script>
-function saveAsPDF() {
-  const doc = new jsPDF();
 
-  // Select the table element
-  const table = document.querySelector('.table');
-
-  // Use html2canvas to capture the table as an image and add it to the PDF
-  html2canvas(table).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
-    const imgProps = doc.getImageProperties(imgData);
-    const pdfWidth = doc.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-    doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-
-    // Save the PDF file
-    doc.save('table.pdf');
-  });
-}
-
-</script>
 <div class="page-wrapper">
         <div class="content container-fluid">
           <div class="page-header">
             <div class="row align-items-center">
               <div class="col">
-                <h3 class="page-title">Niveaux</h3>
+                <h3 class="page-title">Question</h3>
                 <ul class="breadcrumb">
                   <li class="breadcrumb-item">
-                    <a href="index.php">Tableaau de Bord</a>
+                    <a href="index.php">Tableau de Bord</a>
                   </li>
-                  <li class="breadcrumb-item active">Niveau</li>
+                  <li class="breadcrumb-item active">Liste de Questions</li>
                 </ul>
               </div>
             </div>
           </div>
-
-          <form method="POST" action="./ListeNiveau.php">
+          <form method="POST" action="./ListeQuestions.php">
 
           <div class="student-group-form">
             <div class="row">
@@ -73,6 +52,7 @@ function saveAsPDF() {
             </div>
           </div>
           </form>
+
           <div class="row">
             <div class="col-sm-12">
               <div class="card card-table">
@@ -80,7 +60,7 @@ function saveAsPDF() {
                   <div class="page-header">
                     <div class="row align-items-center">
                       <div class="col">
-                        <h3 class="page-title">Niveau</h3>
+                        <h3 class="page-title">Question</h3>
                       </div>
                       <div
                         class="col-auto text-end float-end ms-auto download-grp"
@@ -108,40 +88,32 @@ function saveAsPDF() {
                             
                           </th>
                           <th>ID</th>
-                          <th>Intitulé niveau</th>
-                          <th> code Niveau</th>
-                          <th class="text-end">Action</th>
+                          <th>Question</th>
+                          <th>Reponse 1</th>
+                          <th>Reponse 2</th>
+                          <th>Bonne Reponse </th>
+                          <th>Examen </th>
+
                         </tr>
                       </thead>
                       <tbody>
                         <?php
                         if(isset($resultat)&&($resultat!=null)):
-                          foreach($resultat as $matiere):
+                          foreach($resultat as $quest):
+                            $exams= $apps->SelectionnerUn("SELECT * FROM examen WHERE id=$quest->id_examen");
                         ?>
                         <tr>
                           <td>
                           
                           </td>
-                          <td> <?php echo $matiere->id?></td>
+                          <td> <?php echo $quest->id?></td>
                           
-                          <td><?php echo $matiere->nom?></td>
-                          <td><?php echo $matiere->num?></td>
-                          <td class="text-end">
-                            <div class="actions">
-                              <a
-                                href="javascript:;"
-                                class="btn btn-sm bg-success-light me-2"
-                              >
-                                <i class="feather-eye"></i>
-                              </a>
-                              <a
-                                href="edit-teacher.php"
-                                class="btn btn-sm bg-danger-light"
-                              >
-                                <i class="feather-edit"></i>
-                              </a>
-                            </div>
-                          </td>
+                          <td><?php echo $quest->question?></td>
+                          <td><?php echo $quest->reponse1?></td>
+                          <td><?php echo $quest->reponse2?></td>
+                          <td><?php echo $quest->reponseb?></td>
+                          <td><?php echo $exams->nom?></td>
+
                         </tr>
                         <?php
                         endforeach;
