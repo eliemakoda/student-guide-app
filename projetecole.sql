@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 25 jan. 2024 à 15:10
+-- Généré le : ven. 26 jan. 2024 à 11:02
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -47,13 +47,6 @@ CREATE TABLE `chapitre` (
   `id_matiere` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `chapitre`
---
-
-INSERT INTO `chapitre` (`id`, `content_url`, `content_text`, `type`, `id_matiere`) VALUES
-(1, 'http://localhost/emakotech/part of speech', 'part of speech', 'Facultatif', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -68,13 +61,6 @@ CREATE TABLE `examen` (
   `id_matiere` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `examen`
---
-
-INSERT INTO `examen` (`id`, `nom`, `content_url`, `content_text`, `id_matiere`) VALUES
-(1, 'evaluation de fin de semestre anglais ', 'https://www.udemy.com/', 'adjectives and nouns: give the meaning of an adjective and it\'s equivalent noun', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -88,13 +74,6 @@ CREATE TABLE `matiere` (
   `coefficient` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `matiere`
---
-
-INSERT INTO `matiere` (`id`, `nom`, `id_niveau`, `coefficient`) VALUES
-(1, 'Anglais', 1, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -106,13 +85,6 @@ CREATE TABLE `niveau` (
   `nom` varchar(255) DEFAULT NULL,
   `num` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `niveau`
---
-
-INSERT INTO `niveau` (`id`, `nom`, `num`) VALUES
-(1, 'licence en gestion de ressources humaines', 'LGRH');
 
 -- --------------------------------------------------------
 
@@ -141,13 +113,6 @@ CREATE TABLE `qcm` (
   `reponseb` varchar(255) DEFAULT NULL,
   `id_examen` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `qcm`
---
-
-INSERT INTO `qcm` (`id`, `question`, `reponse1`, `reponse2`, `reponseb`, `id_examen`) VALUES
-(1, 'what of these is  a part of speech?', 'animal', 'orange', 'noun', 1);
 
 -- --------------------------------------------------------
 
@@ -193,14 +158,6 @@ CREATE TABLE `student` (
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `student`
---
-
-INSERT INTO `student` (`id`, `name`, `matricule`, `surname`, `date_naiss`, `sexe`, `religion`, `email`, `id_niveau`, `password`, `image`) VALUES
-(2, 'kowo', 'KIA--09-18-201', 'Elie Makoda', '2003-03-27', 'Feminin', 'Chretien', 'eliemakakowo@gmail.com', '1', '$2y$10$cPGGw7UAGXrii/ENXHjdyu.4qo.PAegEtt7NAHSJFvLyx7yezHhSG', 'img cv.jpg'),
-(4, 'kowo', 'KIA--58-47-477', 'Elie Makoda', '5522-02-14', 'Feminin', 'Chretien', 'eliemakodakowo@gmail.com', '1', '$2y$10$y1q7cGJGenQSoyMHHxJEk.Zt11pvAPyeTBJVQAabRxzYlJbbBG4fG', 'img cv.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -215,13 +172,6 @@ CREATE TABLE `user` (
   `first_login` date NOT NULL DEFAULT current_timestamp(),
   `image` varchar(255) NOT NULL DEFAULT 'user-5.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id`, `email`, `password`, `firstname`, `first_login`, `image`) VALUES
-(1, 'eliemakodakowo@gmail.com', '$2y$10$6p7VAuzEiFdtAV7WYZIzsOoEzcBDd75rGYP7DFIkSkGSi0fohu9mi', 'Elie makoda', '2024-01-24', 'img cv.jpg');
 
 --
 -- Index pour les tables déchargées
@@ -252,8 +202,7 @@ ALTER TABLE `examen`
 -- Index pour la table `matiere`
 --
 ALTER TABLE `matiere`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_niveau` (`id_niveau`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `niveau`
@@ -316,25 +265,25 @@ ALTER TABLE `bonnerep`
 -- AUTO_INCREMENT pour la table `chapitre`
 --
 ALTER TABLE `chapitre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `examen`
 --
 ALTER TABLE `examen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `matiere`
 --
 ALTER TABLE `matiere`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `niveau`
 --
 ALTER TABLE `niveau`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `note`
@@ -346,7 +295,7 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT pour la table `qcm`
 --
 ALTER TABLE `qcm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `question`
@@ -358,13 +307,13 @@ ALTER TABLE `question`
 -- AUTO_INCREMENT pour la table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées

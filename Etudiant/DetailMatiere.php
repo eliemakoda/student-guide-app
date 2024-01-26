@@ -3,8 +3,10 @@ session_start();
 require "./assets/include/App.php";
 $apps= new App;
 $id= $_GET["id_mat"];
-$sql="SELECT * FROM chapitre LEFT JOIN matiere on chapitre.id_matiere=$id";
+$sql="SELECT * FROM chapitre where id_matiere=$id";
 $results = $apps->SelectionnerTout($sql);
+$sqlex= "SELECT * FROM  examen WHERE id_matiere=$id";
+$exams= $apps->SelectionnerUn($sql);
 require "./header.php";
 ?>
 <div class="page-wrapper">
@@ -38,9 +40,10 @@ require "./header.php";
                   </h3>
                  
                     <p>
+                      pour plus d'informations sur ce chapitre cliquez 
                         <a href="<?php
                     echo $res->content_url;
-                    ?>">
+                    ?>"> ici
                         <?php
                     echo $res->content_url;
                     ?>
@@ -58,7 +61,7 @@ require "./header.php";
                 <?php
                 endforeach;
                 ?>
-              
+             <a href="./Evaluation.php?id_exam=<?php echo $exams->id ?>"> vous êtes Prêt ? passez votre examen </a>
                 </div>
               </div>
             </div>

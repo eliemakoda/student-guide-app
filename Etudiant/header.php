@@ -86,7 +86,7 @@ if (session_status() == PHP_SESSION_NONE) {
           
                 <li class="nav-item zoom-screen me-2">
                     <a href="#" class="nav-link header-nav-list win-maximize">
-                        <img src="assets/img/icons/header-icon-04.svg" alt="">
+                        <img src="assets/img/i" alt="">
                     </a>
                 </li>
                 <?php  if(isset($_SESSION['name_etudiant'])): ?>
@@ -98,7 +98,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             
                             $im= explode(",",$_SESSION['image_etudiant']);
                             ?>
-                            <img class="rounded-circle" src="assets/img/<?php echo $im[0]; ?>" width="31"
+                            <img class="rounded-circle" src="../assets/img/<?php echo $im[0]; ?>" width="31"
                                 alt="<?php
                                 echo $_SESSION['surname_etudiant']; 
                                     echo "  ";

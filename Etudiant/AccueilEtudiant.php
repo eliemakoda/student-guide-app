@@ -115,7 +115,7 @@ require "./header.php";
                           <td> <?php echo $matiere->id?></td>
                           <td>
                             <h2 class="table-avatar">
-                              <a href="detailMatiere.php?id_mat=<?php echo $matiere->id?>"><?php echo $matiere->mnom?></a>
+                              <a href="detailMatiere.php?id_mat=<?php echo $matiere->mid?>"><?php echo $matiere->mnom?></a>
                             </h2>
                           </td>
                           <td><?php echo $matiere->nnom?></td>
