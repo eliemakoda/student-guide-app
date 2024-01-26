@@ -27,7 +27,7 @@ $tab=[
   ":firstname"=>$nom,
   ":image"=>implode(',',$urlsImages)
 ];
-$destination= "./login.php";
+$destination= "./index.php";
 $apps->inserer($sql,$tab,$destination);
 };
 }
